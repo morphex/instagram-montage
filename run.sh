@@ -9,4 +9,11 @@ if [[ -z $2 ]]; then
   exit
 fi
 
-/home/morphex/.local/bin/instagram-scraper -u $1 -p $2 --latest --destination dump --template \{date\}\{h\}\{m\}\{s\}-\{mediatype\} $1
+instagram-scraper &> /dev/null
+if [ $? -eq 2 ]; then
+  cmd=instagram-scraper
+else
+  cmd=$HOME/.local/bin/instagram-scraper
+fi
+$cmd -u $1 -p $2 --latest --destination \
+dump --template \{date\}\{h\}\{m\}\{s\}-\{mediatype\} $1
