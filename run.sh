@@ -10,7 +10,7 @@ if [[ -z $2 ]]; then
 fi
 
 instagram-scraper &> /dev/null
-if [ $? -eq 2 ]; then
+if [ $? -eq 1 ]; then
   cmd=instagram-scraper
 else
   cmd=$HOME/.local/bin/instagram-scraper
