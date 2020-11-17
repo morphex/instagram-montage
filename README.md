@@ -11,3 +11,9 @@ Debian systems (including Ubuntu) using:
 ImageMagick is installed using
 
   sudo apt install imagemagick
+
+BUGS
+
+  Running this script a second time with a higher maximum of downloads does
+  nothing, and that's a bug in instagram-scraper.
+

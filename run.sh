@@ -1,12 +1,14 @@
 #!/bin/bash
 
-if [[ -z $1 ]]; then
-  echo "Need username* and password as arguments"
+if [[ -z $1 || -z $2 ]]; then
+  echo "./run.sh username password [maximum=50]"
+  echo "If password is wrong, only public posts are downloaded"
   exit
 fi
-if [[ -z $2 ]]; then
-  echo "Need username and password* as arguments"
-  exit
+
+maximum=50
+if [[ ! -z $3 ]]; then
+  maximum=$3
 fi
 
 instagram-scraper &> /dev/null
@@ -15,5 +17,5 @@ if [ $? -eq 1 ]; then
 else
   cmd=$HOME/.local/bin/instagram-scraper
 fi
-$cmd -u $1 -p $2 --latest --destination \
+$cmd -u $1 -p $2 --latest --maximum $maximum --destination \
 dump --template \{date\}\{h\}\{m\}\{s\}-\{mediatype\} $1
